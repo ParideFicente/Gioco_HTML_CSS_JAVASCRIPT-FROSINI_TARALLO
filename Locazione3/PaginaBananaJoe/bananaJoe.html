@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sasso Carta Forbici - 1vs1</title>
+  <link rel="stylesheet" href="bananaJoe.css">
+</head>
+<body>
+
+  <h1>Scontro 1vs1: Darwin vs Banana Joe!</h1>
+
+  <div class="arena">
+    <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
+    <img src="bananaJoe.jpg" alt="bananaJoe (bot)" id="bananaJoeImg">
+  </div>
+
+  <div id="result">
+    <span class="highlight" id="highlightText"></span>
+  </div>
+
+  <div id="scoreboard">
+    <p id="score">Darwin: 0 | Banana Joe: 0</p>
+  </div>
+
+  <div class="buttons">
+    <button onclick="play('sasso')">Sasso</button>
+    <button onclick="play('carta')">Carta</button>
+    <button onclick="play('forbici')">Forbici</button>
+  </div>
+
+  <div class="info-locazione">
+    <p>Ti trovi nella 2° locazione</p>
+    <img src="../Locazione3.png" alt="Seconda locazione" draggable="false">
+  </div>
+
+  <script>
+    let gameOver = false;
+    let playerScore = 0;
+    let botScore = 0;
+    const maxScore = 3;
+
+    function play(playerChoice) {
+      if (gameOver) return;
+
+      const choices = ['sasso', 'carta', 'forbici'];
+      const botChoice = choices[Math.floor(Math.random() * choices.length)];
+      const highlight = document.getElementById("highlightText");
+      const scoreText = document.getElementById("score");
+      const darwinImg = document.getElementById("darwinImg");
+      const bananaJoeImg = document.getElementById("bananaJoeImg");
+
+      let result = '';
+
+      if (playerChoice === botChoice) {
+        result = `Pareggio! Entrambi avete scelto ${playerChoice}.`;
+        darwinImg.src = "../../Locazione1/darwin.png";
+        bananaJoeImg.src = "bananaJoe.jpg";
+      } else if (
+        (playerChoice === 'sasso' && botChoice === 'forbici') ||
+        (playerChoice === 'carta' && botChoice === 'sasso') ||
+        (playerChoice === 'forbici' && botChoice === 'carta')
+      ) {
+        result = `Hai vinto il round! ${playerChoice} batte ${botChoice}.`;
+        playerScore++;
+        darwinImg.src = "../../Locazione1/darwinWin.jpeg";
+        bananaJoeImg.src = "bananaJoeLose.jpg";
+      } else {
+        result = `Hai perso il round! ${botChoice} batte ${playerChoice}.`;
+        botScore++;
+        darwinImg.src = "../../Locazione1/darwinLose.jpg";
+        bananaJoeImg.src = "bananaJoeWin.jpg";
+      }
+
+      highlight.textContent = result;
+      highlight.style.opacity = 1;
+      scoreText.textContent = `Darwin: ${playerScore} | Banana Joe: ${botScore}`;
+
+      if (playerScore === maxScore || botScore === maxScore) {
+        gameOver = true;
+        setTimeout(() => {
+          if (playerScore > botScore) {
+            const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
+            if (conferma) {
+              window.location.href = '../Locazione3.html';
+            } else {
+              window.location.href = '../../PaginaSconfitta/sconfitta.html';
+            }
+          } else {
+            window.location.href = '../../PaginaSconfitta/sconfitta.html';
+          }
+        }, 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>
