@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Indica al browser che questo file è scritto in HTML5 -->
+
+<html>
+  <head>
+    <title>ADVENTURE</title>
+    <!-- Titolo della pagina: appare nella scheda del browser -->
+
+    <link rel="stylesheet" href="locazione11.css">
+    <!-- Collega il foglio di stile esterno (CSS) che contiene la grafica della pagina -->
+  </head>
+
+  <body>
+    <!-- Tutto ciò che è visibile nella pagina va dentro il tag <body> -->
+
+    <!-- Contenitore principale con titolo, testo, immagine e pulsanti -->
+    <div class="Titolo">
+
+      <!-- Titolo principale della pagina -->
+      <h1>Hai davanti a te tre scelte. Scegli saggiamente!</h1>
+
+      <!-- Scritta che indica dove si trova il giocatore -->
+      <p>Ti trovi nella 11° locazione dell'avventura</p>
+
+      <!-- Immagine mostrata sotto il titolo -->
+      <!-- L'attributo draggable="false" impedisce di trascinarla -->
+      <img src="Locazione11.png".png alt="Inizio avventura" class="angolo-sinistro" draggable="false">
+
+      <!-- Contenitore per i pulsanti -->
+      <div class="Porte">
+
+        <!-- Bottone che porta alla pagina di Richard -->
+        <!-- location.href serve per cambiare pagina tramite JavaScript -->
+        <button onclick="location.href='../Locazione12/PaginaRichard/richard.html'">Prima Scelta</button>
+
+        <!-- Bottone che porta alla pagina di Gumball -->
+        <button onclick="location.href='../Locazione16/PaginaGumball/gumball.html'">Seconda Scelta</button>
+
+        <!-- Bottone che porta alla pagina di Nonna Jojo -->
+        <button onclick="location.href='../Locazione15/PaginaNonnaJojo/nonnaJojo.html'">Terza Scelta</button>
+      </div>
+    </div>
+  </body>
+</html>

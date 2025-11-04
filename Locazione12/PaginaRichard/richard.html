@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sasso Carta Forbici - 1vs1</title>
+  <link rel="stylesheet" href="richardStyle.css">
+</head>
+<body>
+
+  <!-- Titolo principale -->
+  <h1>Scontro 1vs1: Darwin vs Richard!</h1>
+
+  <!-- Sezione con le immagini dei due sfidanti -->
+  <div class="arena">
+    <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
+    <img src="richard.png" alt="Richard (bot)" id="richardImg">
+  </div>
+
+  <!-- Mostra il risultato del round -->
+  <div id="result">
+    <span class="highlight" id="highlightText"></span>
+  </div>
+
+  <!-- Punteggio -->
+  <div id="scoreboard">
+    <p id="score">Darwin: 0 | Richard: 0</p>
+  </div>
+
+  <!-- Pulsanti per giocare -->
+  <div class="buttons">
+    <button onclick="play('sasso')">Sasso</button>
+    <button onclick="play('carta')">Carta</button>
+    <button onclick="play('forbici')">Forbici</button>
+  </div>
+
+  <!-- Nuova sezione in basso a sinistra -->
+  <div class="info-locazione">
+    <p>Ti trovi nella 8° locazione</p>
+    <img src="../Locazione8.png" alt="Ottava locazione" draggable="false">
+  </div>
+
+  <!-- SCRIPT DEL GIOCO -->
+  <script>
+    // Variabile per sapere se la partita è finita
+    let gameOver = false;
+
+    // Punteggi iniziali
+    let playerScore = 0;
+    let botScore = 0;
+
+    // Punteggio massimo per vincere
+    const maxScore = 3;
+
+    // Funzione principale del gioco
+    function play(playerChoice) {
+      // Se la partita è già finita, esci
+      if (gameOver) return;
+
+      // Possibili scelte
+      const choices = ['sasso', 'carta', 'forbici'];
+
+      // Scelta casuale della CPU (Richard)
+      const botChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      // Collegamenti agli elementi HTML
+      const highlight = document.getElementById("highlightText");
+      const scoreText = document.getElementById("score");
+      const darwinImg = document.getElementById("darwinImg");
+      const richardImg = document.getElementById("richardImg");
+
+      // Risultato del round
+      let result = '';
+
+      // --- LOGICA DI GIOCO ---
+      if (playerChoice === botChoice) {
+        // Pareggio
+        result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
+        darwinImg.src = "../../Locazione1/darwin.png";
+        richardImg.src = "richard.png";
+      } 
+      else if (
+        (playerChoice === 'sasso' && botChoice === 'forbici') ||
+        (playerChoice === 'carta' && botChoice === 'sasso') ||
+        (playerChoice === 'forbici' && botChoice === 'carta')
+      ) {
+        // Vince Darwin
+        result = "Hai vinto il round! " + playerChoice + " batte " + botChoice + ".";
+        playerScore++;
+        darwinImg.src = "../../Locazione1/darwinWin.jpeg";
+        richardImg.src = "richardLose.jpg";
+      } 
+      else {
+        // Vince Richard
+        result = "Hai perso il round! " + botChoice + " batte " + playerChoice + ".";
+        botScore++;
+        darwinImg.src = "../../Locazione1/darwinLose.jpg";
+        richardImg.src = "richardWin.jpg";
+      }
+
+      // Mostra risultato
+      highlight.textContent = result;
+      highlight.style.opacity = 1;
+
+      // Aggiorna punteggio
+      scoreText.textContent = "Darwin: " + playerScore + " | Richard: " + botScore;
+
+      // --- CONTROLLO VITTORIA FINALE ---
+      if (playerScore === maxScore || botScore === maxScore) {
+        gameOver = true;
+
+        // Mostra il messaggio finale dopo 1 secondo
+        setTimeout(function () {
+          if (playerScore > botScore) {
+            const conferma = confirm("Hai vinto contro Richard! Vuoi passare alla prossima locazione?");
+            if (conferma) {
+              window.location.href = '../locazione8.html';
+            } else {
+              window.location.href = '../../PaginaSconfitta/sconfitta.html';
+            }
+          } else {
+            window.location.href = '../../PaginaSconfitta/sconfitta.html';
+          }
+        }, 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>

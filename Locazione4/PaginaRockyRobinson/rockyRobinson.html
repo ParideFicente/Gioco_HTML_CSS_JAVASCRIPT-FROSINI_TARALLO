@@ -2,25 +2,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Sasso Carta Forbici - 1vs1</title>
-  <link rel="stylesheet" href="rockyRobinson.css">
+  <link rel="stylesheet" href="rockyRobinsonStyle.css">
 </head>
 <body>
 
+  <!-- Titolo principale -->
   <h1>Scontro 1vs1: Darwin vs Rocky Robinson!</h1>
 
+  <!-- Sezione dove appaiono le immagini dei due sfidanti -->
   <div class="arena">
     <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
-    <img src="rockyRobinson.webp" alt="rockyRobinson (bot)" id="rockyRobinsonImg">
+    <img src="rockyRobinson.jpg" alt="Rocky Robinson (bot)" id="rockyRobinsonImg">
   </div>
 
+  <!-- Mostra il risultato del round -->
   <div id="result">
     <span class="highlight" id="highlightText"></span>
   </div>
 
+  <!-- Punteggio -->
   <div id="scoreboard">
     <p id="score">Darwin: 0 | Rocky Robinson: 0</p>
   </div>
 
+  <!-- Pulsanti per giocare -->
   <div class="buttons">
     <button onclick="play('sasso')">Sasso</button>
     <button onclick="play('carta')">Carta</button>
@@ -29,74 +34,99 @@
 
   <!-- Nuova sezione in basso a sinistra -->
   <div class="info-locazione">
-    <p>Ti trovi nella 2° locazione</p>
-    <img src="../Locazione4.png" alt="Seconda locazione" draggable="false">
+    <p>Ti trovi nella 6° locazione</p>
+    <img src="../Locazione6.png" alt="Sesta locazione" draggable="false">
   </div>
 
+  <!-- SCRIPT DEL GIOCO -->
   <script>
+    // Variabile per sapere se la partita è finita
     let gameOver = false;
+
+    // Punteggi iniziali
     let playerScore = 0;
     let botScore = 0;
+
+    // Punteggio massimo (chi arriva a 3 vince)
     const maxScore = 3;
 
+    // Funzione principale: viene eseguita ogni volta che premi un pulsante
     function play(playerChoice) {
+      // Se la partita è già finita, non fare niente
       if (gameOver) return;
 
+      // Possibili scelte
       const choices = ['sasso', 'carta', 'forbici'];
+
+      // Il bot sceglie casualmente una delle tre
       const botChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      // Collegamento agli elementi HTML per modificare testo e immagini
       const highlight = document.getElementById("highlightText");
       const scoreText = document.getElementById("score");
       const darwinImg = document.getElementById("darwinImg");
-      const rockyRobinson = document.getElementById("rockyRobinsonImg");
+      const rockyRobinsonImg = document.getElementById("rockyRobinsonImg");
 
+      // Variabile che conterrà il messaggio del round
       let result = '';
 
-      // Risultato del round
+      // --- LOGICA DEL GIOCO ---
       if (playerChoice === botChoice) {
-        result = `Pareggio! Entrambi avete scelto ${playerChoice}.`;
-        // immagini restano le stesse
+        // Caso di pareggio
+        result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
+        // Le immagini restano normali
         darwinImg.src = "../../Locazione1/darwin.png";
-        rockyRobinsonImg.src = "rockyRobinson.webp";
-      } else if (
+        rockyRobinsonImg.src = "rockyRobinson.jpg";
+      } 
+      else if (
         (playerChoice === 'sasso' && botChoice === 'forbici') ||
         (playerChoice === 'carta' && botChoice === 'sasso') ||
         (playerChoice === 'forbici' && botChoice === 'carta')
       ) {
-        result = `Hai vinto il round! ${playerChoice} batte ${botChoice}.`;
+        // Giocatore vince il round
+        result = "Hai vinto il round! " + playerChoice + " batte " + botChoice + ".";
         playerScore++;
-        // immagini: Darwin vittoria, Anais sconfitta
+        // Aggiorna immagini
         darwinImg.src = "../../Locazione1/darwinWin.jpeg";
-        rockyRobinsonImg.src = "rockyRobinsonLose.webp";
-      } else {
-        result = `Hai perso il round! ${botChoice} batte ${playerChoice}.`;
+        rockyRobinsonImg.src = "rockyRobinsonLose.jpg";
+      } 
+      else {
+        // Giocatore perde il round
+        result = "Hai perso il round! " + botChoice + " batte " + playerChoice + ".";
         botScore++;
-        // immagini: Darwin sconfitta, Anais vittoria
+        // Aggiorna immagini: Darwin perde, Rocky Robinson vince
         darwinImg.src = "../../Locazione1/darwinLose.jpg";
         rockyRobinsonImg.src = "rockyRobinsonWin.jpg";
       }
 
-      // Aggiorna UI
+      // Mostra il messaggio del round
       highlight.textContent = result;
       highlight.style.opacity = 1;
-      scoreText.textContent = `Darwin: ${playerScore} | Rocky Robinson: ${botScore}`;
 
-      // Controlla vittoria di partita (prima a 3)
+      // Aggiorna il punteggio sullo schermo
+      scoreText.textContent = "Darwin: " + playerScore + " | Rocky Robinson: " + botScore;
+
+      // --- CONTROLLO VITTORIA FINALE ---
       if (playerScore === maxScore || botScore === maxScore) {
         gameOver = true;
-        setTimeout(() => {
+
+        // Aspetta 1 secondo prima di mostrare la finestra di vittoria o sconfitta
+        setTimeout(function () {
           if (playerScore > botScore) {
-            // Darwin ha vinto → chiedi conferma prima di andare alla pagina successiva
+            // Giocatore ha vinto
             const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
             if (conferma) {
-              window.location.href = '../locazione4.html';
+              // Se conferma → va alla pagina successiva
+              window.location.href = '../locazione6.html';
             } else {
+              // Se rifiuta → torna alla pagina di sconfitta
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }
           } else {
-            // Rocky Robinson ha vinto → vai direttamente alla pagina Game Over
+            // Se il bot vince → va direttamente alla sconfitta
             window.location.href = '../../PaginaSconfitta/sconfitta.html';
           }
-        }, 1000); // un secondo per dare tempo di vedere il risultato
+        }, 1000); // 1000 ms = 1 secondo
       }
     }
   </script>

@@ -1,21 +1,39 @@
 <!DOCTYPE html>
+<!-- Indica al browser che questo file è scritto in HTML5 -->
+
 <html>
   <head>
     <meta charset="UTF-8">
+    <!-- Imposta la codifica dei caratteri su UTF-8 (serve per visualizzare correttamente lettere accentate e simboli) -->
+
     <title>ADVENTURE</title>
+    <!-- Titolo della pagina: appare nella scheda del browser -->
+
     <link rel="stylesheet" href="Locazione16.css">
+    <!-- Collega il foglio di stile esterno (CSS) che contiene la grafica della pagina -->
   </head>
+
   <body>
-    <!-- Scritta in alto a sinistra -->
+    <!-- Tutto ciò che è visibile nella pagina va dentro il tag <body> -->
+
+    <!-- Scritta in alto a sinistra che indica dove si trova il giocatore -->
     <p class="posizione">Ti trovi nella 16° locazione dell'avventura</p>
 
+    <!-- Contenitore principale con titolo, immagine e bottone -->
     <div class="Titolo">
+
+      <!-- Titolo principale della pagina -->
       <h1>Ti manca poco per finire l'avventura!!</h1>
 
-      <!-- Immagine sotto la scritta, non trascinabile -->
+      <!-- Immagine mostrata sotto il titolo -->
+      <!-- L'attributo draggable="false" impedisce di trascinarla -->
       <img src="Locazione16.png" alt="Inizio avventura" class="angolo-sinistro" draggable="false">
 
+      <!-- Contenitore per i pulsanti -->
       <div class="Porte">
+
+        <!-- Bottone che, quando cliccato, porta alla pagina della vittoria -->
+        <!-- location.href serve per cambiare pagina tramite JavaScript -->
         <button onclick="location.href='../PaginaVittoria/vittoria.html'">
           Procedi alla vittoria
         </button>
