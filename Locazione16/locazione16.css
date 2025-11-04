@@ -1,0 +1,67 @@
+body {
+  background-image: url("../Locazione1/sfondoIndex.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.Titolo {
+  text-align: center;
+  width: 80%;
+  max-width: 900px;
+}
+
+h1 {
+  color: white;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-size: 48px;
+}
+
+.Porte {
+  display: flex;
+  justify-content: center;  /* centra il bottone */
+  align-items: center;
+}
+
+button {
+  background-color: #08e7f7;
+  color: black;
+  border: 2px solid white;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #06bcd1;
+}
+
+.posizione {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+
+.angolo-sinistro {
+  position: absolute;
+  top: 100px;
+  left: 20px;
+  width: 180px;
+  height: auto;
+  user-drag: none;
+  user-select: none;
+}
