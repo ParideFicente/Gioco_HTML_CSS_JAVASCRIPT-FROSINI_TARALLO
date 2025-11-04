@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sasso Carta Forbici - 1vs1</title>
+  <link rel="stylesheet" href="gaylordWatterson.css">
+</head>
+<body>
+
+  <h1>Scontro 1vs1: Darwin vs Gaylord Robbinson!</h1>
+
+  <div class="arena">
+    <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
+    <img src="gaylord.jpg" alt="gaylord" id="anaisImg">
+  </div>
+
+  <div id="result">
+    <span class="highlight" id="highlightText"></span>
+  </div>
+
+  <div id="scoreboard">
+    <p id="score">Darwin: 0 | gaylord robbinson: 0</p>
+  </div>
+
+  <div class="buttons">
+    <button onclick="play('sasso')">Sasso</button>
+    <button onclick="play('carta')">Carta</button>
+    <button onclick="play('forbici')">Forbici</button>
+  </div>
+
+  <script>
+    let gameOver = false;
+    let playerScore = 0; // Darwin
+    let botScore = 0;    // gaylord robbinson
+    const maxScore = 3;  // meglio di 5 -> prima a 3 vince
+
+    function play(playerChoice) {
+      if (gameOver) return;
+
+      const choices = ['sasso', 'carta', 'forbici'];
+      const botChoice = choices[Math.floor(Math.random() * choices.length)];
+      const highlight = document.getElementById("highlightText");
+      const scoreText = document.getElementById("score");
+      const darwinImg = document.getElementById("darwinImg");
+      const anaisImg = document.getElementById("anaisImg");
+
+      let result = '';
+
+      // Risultato del round
+      if (playerChoice === botChoice) {
+        result = `Pareggio! Entrambi avete scelto ${playerChoice}.`;
+        // immagini restano le stesse
+        darwinImg.src = "../../Locazione1/darwin.png";
+        anaisImg.src = "gaylord.jpg";
+      } else if (
+        (playerChoice === 'sasso' && botChoice === 'forbici') ||
+        (playerChoice === 'carta' && botChoice === 'sasso') ||
+        (playerChoice === 'forbici' && botChoice === 'carta')
+      ) {
+        result = `Hai vinto il round! ${playerChoice} batte ${botChoice}.`;
+        playerScore++;
+        // immagini: Darwin vittoria, Anais sconfitta
+        darwinImg.src = "../../Locazione1/darwinWin.jpeg";
+        anaisImg.src = "gaylordLose.jpg";
+      } else {
+        result = `Hai perso il round! ${botChoice} batte ${playerChoice}.`;
+        botScore++;
+        // immagini: Darwin sconfitta, Anais vittoria
+        darwinImg.src = "../../Locazione1/darwinLose.jpg";
+        anaisImg.src = "gaylordWin.jpg";
+      }
+
+      // Aggiorna UI
+      highlight.textContent = result;
+      highlight.style.opacity = 1;
+      scoreText.textContent = `Darwin: ${playerScore} | Gaylord: ${botScore}`;
+
+     // Controlla vittoria di partita (prima a 3)
+      if (playerScore >= maxScore || botScore >= maxScore) {
+        gameOver = true;
+        setTimeout(() => {
+          if (playerScore > botScore) {
+            // Darwin ha vinto → chiedi conferma prima di andare alla pagina successiva
+            const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
+            if (conferma) {
+              window.location.href = '../../Locazione14/locazione14.html';
+            } else {
+              window.location.href = '../../PaginaSconfitta/sconfitta.html';
+            }
+          } else {
+            // Nocciolina ha vinto → vai direttamente alla pagina Game Over
+            window.location.href = '../../PaginaSconfitta/sconfitta.html';
+          }
+        }, 1000); // un secondo per dare tempo di vedere il risultato
+      }
+    }
+  </script>
+
+</body>
+</html>
