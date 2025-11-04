@@ -1,47 +1,53 @@
+/* --- STILE GENERALE DEL BODY --- */
 body {
-  background-image: url("sfondoSconfitta.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  justify-content: center;   /* centra orizzontalmente */
-  align-items: center;       /* centra verticalmente */
-  color: white;
-  font-family: Arial, sans-serif;
+  background-image: url("sfondoSconfitta.webp"); /* Immagine di sfondo della pagina */
+  background-size: cover;                        /* L'immagine copre tutta la finestra */
+  background-position: center;                   /* L'immagine è centrata */
+  background-repeat: no-repeat;                  /* L'immagine non si ripete */
+  background-attachment: fixed;                  /* Lo sfondo resta fisso quando scrolli */
+  height: 100vh;                                 /* Altezza pari all'altezza della finestra */
+  margin: 0;                                     /* Elimina i margini predefiniti del browser */
+  display: flex;                                 /* Attiva Flexbox per il layout */
+  justify-content: center;                       /* Centra il contenuto orizzontalmente */
+  align-items: center;                           /* Centra il contenuto verticalmente */
+  color: white;                                  /* Colore del testo bianco */
+  font-family: Arial, sans-serif;               /* Font principale della pagina */
 }
 
+/* --- CONTENITORE PRINCIPALE --- */
 .container {
-  text-align: center;
-  max-width: 800px;
-  padding: 20px;
+  text-align: center;                            /* Centra il testo all’interno del container */
+  max-width: 800px;                              /* Larghezza massima per non allargarsi troppo su schermi grandi */
+  padding: 20px;                                 /* Spazio interno tra bordo e contenuto */
 }
 
+/* --- STILE DELL’INTTESTAZIONE PRINCIPALE --- */
 h1 {
-  font-size: 60px;      /* più grande */
-  margin-bottom: 30px;
-  color: #ffffff;
+  font-size: 60px;                               /* Dimensione del testo più grande per enfatizzare il titolo */
+  margin-bottom: 30px;                           /* Spazio sotto il titolo */
+  color: #ffffff;                                /* Colore del testo bianco */
 }
 
+/* --- STILE DEI PARAGRAFI --- */
 p {
-  font-size: 24px;
-  margin: 10px 0;
+  font-size: 24px;                               /* Dimensione del testo leggibile */
+  margin: 10px 0;                                /* Spazio sopra e sotto i paragrafi */
 }
 
+/* --- STILE DEI PULSANTI --- */
 button {
-  margin-top: 40px;
-  background-color: #08e7f7;
-  color: black;
-  border: 2px solid white;
-  padding: 12px 24px;
-  font-size: 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
+  margin-top: 40px;                              /* Spazio sopra il bottone */
+  background-color: #08e7f7;                     /* Colore di sfondo azzurro */
+  color: black;                                  /* Colore del testo */
+  border: 2px solid white;                       /* Bordo bianco */
+  padding: 12px 24px;                            /* Spazio interno: 12px alto/basso, 24px sx/dx */
+  font-size: 20px;                               /* Dimensione del testo */
+  border-radius: 12px;                            /* Angoli arrotondati */
+  cursor: pointer;                               /* Cambia cursore in mano al passaggio */
+  transition: 0.3s;                              /* Transizione morbida su hover */
 }
 
+/* Cambia colore del pulsante quando ci passi sopra */
 button:hover {
-  background-color: #06bcd1;
+  background-color: #06bcd1;                     /* Azzurro più scuro quando si passa sopra */
 }
