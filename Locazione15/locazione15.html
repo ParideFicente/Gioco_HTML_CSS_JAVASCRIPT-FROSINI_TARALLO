@@ -1,21 +1,42 @@
+<!DOCTYPE html>
+<!-- Indica al browser che questo file è scritto in HTML5 -->
 
-</html><!DOCTYPE html>
 <html>
   <head>
     <title>ADVENTURE</title>
-    <link rel="stylesheet" href="locazione15.css">
-  </head>
-  <body>
-    <div class="Titolo">
-      <h1>Hai davanti a te tre scelte. Scegli saggiamente!</h1>
-      <p>Ti trovi nella 13° locazione  dell'avventura</p>
+    <!-- Titolo della pagina: appare nella scheda del browser -->
 
-      <!-- Immagine sotto la scritta, non trascinabile -->
+    <link rel="stylesheet" href="locazione15.css">
+    <!-- Collega il foglio di stile esterno (CSS) che gestisce l'aspetto grafico della pagina -->
+  </head>
+
+  <body>
+    <!-- Tutto ciò che è visibile nella pagina va inserito all’interno del tag <body> -->
+
+    <!-- Contenitore principale della pagina: include titolo, testo, immagine e pulsanti -->
+    <div class="Titolo">
+
+      <!-- Titolo principale mostrato in alto -->
+      <h1>Hai davanti a te tre scelte. Scegli saggiamente!</h1>
+
+      <!-- Testo descrittivo della posizione attuale -->
+      <p>Ti trovi nella 15° locazione  dell'avventura</p>
+
+      <!-- Immagine principale della locazione -->
+      <!-- draggable="false" impedisce all’utente di trascinarla -->
       <img src="Locazione15.png".png alt="Inizio avventura" class="angolo-sinistro" draggable="false">
 
+      <!-- Contenitore che include i pulsanti per le tre scelte possibili -->
       <div class="Porte">
+
+        <!-- Primo pulsante: porta alla pagina di sconfitta -->
+        <!-- location.href serve per passare alla pagina successiva -->
         <button onclick="location.href='../PaginaSconfitta/sconfitta.html'">Prima Scelta</button>
+
+        <!-- Secondo pulsante: porta alla pagina di Gumball -->
         <button onclick="location.href='../Locazione16/PaginaGumball/gumball.html'">Seconda Scelta</button>
+
+        <!-- Terzo pulsante: porta alla pagina di sconfitta -->
         <button onclick="location.href='../PaginaSconfitta/sconfitta.html'">Terza Scelta</button>
       </div>
     </div>

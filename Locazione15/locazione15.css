@@ -1,72 +1,75 @@
+/* --- CONTENITORE PRINCIPALE --- */
 .container {
-  text-align: center;
-  width: 80%;
-  display: flex;
-  flex-direction: column; /* mette titolo sopra e pulsanti sotto */
-  justify-content: center;
-  align-items: center;
+  text-align: center;                   /* Centra il testo orizzontalmente all'interno del container */
+  width: 80%;                           /* Larghezza del container: 80% della finestra */
+  display: flex;                        /* Attiva Flexbox per gestire facilmente gli elementi figli */
+  flex-direction: column;               /* Dispone gli elementi uno sotto l’altro (verticale) */
+  justify-content: center;              /* Centra verticalmente i figli all'interno del container */
+  align-items: center;                  /* Centra orizzontalmente i figli */
 }
 
+/* --- STILE DELL’INTTESTAZIONE PRINCIPALE --- */
 h1 {
-  color: white;
-  margin-top: 40px;
-  margin-bottom: 80px; /* distanza dal gruppo dei pulsanti */
-  font-size: 48px;
+  color: white;                         /* Colore del testo */
+  margin-top: 40px;                     /* Spazio sopra l’intestazione */
+  margin-bottom: 80px;                  /* Spazio sotto l’intestazione per separarla dai pulsanti */
+  font-size: 48px;                      /* Dimensione del testo */
 }
 
+/* --- STILE GENERALE DEL BODY --- */
 body {
-  background-image: url("../Locazione1/sfondoIndex.jpg");  /* nome del tuo file */
-  background-size: cover;               /* l’immagine copre tutto lo schermo */
-  background-position: center;          /* centrata */
-  background-repeat: no-repeat;         /* non ripetuta */
-  background-attachment: fixed;         /* resta ferma quando scrolli */
-  height: 100vh;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  background-image: url("../Locazione1/sfondoIndex.jpg");  /* Immagine di sfondo */
+  background-size: cover;                   /* L’immagine copre tutta la finestra */
+  background-position: center;              /* L’immagine è centrata */
+  background-repeat: no-repeat;             /* Non ripete l’immagine */
+  background-attachment: fixed;             /* Lo sfondo resta fisso quando scrolli */
+  height: 100vh;                            /* Altezza pari all’altezza della finestra */
+  margin: 0;                                /* Elimina i margini predefiniti */
+  display: flex;                            /* Usa Flexbox per centrare contenuti */
+  align-items: center;                      /* Centra verticalmente il contenuto */
+  justify-content: center;                  /* Centra orizzontalmente il contenuto */
+  color: white;                             /* Colore del testo bianco di default */
 }
 
-.Titolo 
-{
-  text-align: center;
-  width: 80%;
-  max-width: 900px; /* limite per non allargarsi troppo su schermi grandi */
+/* --- CONTENITORE DEL TITOLO --- */
+.Titolo {
+  text-align: center;                       /* Centra il testo all’interno del container */
+  width: 80%;                               /* Larghezza: 80% della finestra */
+  max-width: 900px;                         /* Massimo 900px su schermi grandi */
 }
 
-.Porte
-{
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* sinistra - centro - destra */
-  align-items: center;
-  margin-top: 80px;
+/* --- CONTENITORE DEI PULSANTI --- */
+.Porte {
+  width: 100%;                              /* Occupa tutta la larghezza del genitore */
+  display: flex;                            /* Flexbox per allineare i pulsanti */
+  justify-content: space-between;           /* Distribuisce i pulsanti ai lati opposti */
+  align-items: center;                      /* Allinea verticalmente i pulsanti */
+  margin-top: 80px;                         /* Spazio sopra i pulsanti rispetto al titolo */
 }
 
-button
-{
-    background-color: #08e7f7;
-    color: rgb(0, 0, 0);
-    border: 2px solid white;
+/* --- STILE DEI PULSANTI --- */
+button {
+  background-color: #08e7f7;                /* Colore di sfondo azzurro */
+  color: rgb(0, 0, 0);                      /* Colore del testo nero */
+  border: 2px solid white;                  /* Bordo bianco */
 }
 
-p
-{
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  color: white;
-  font-size: 24px;
-  margin-top: 20px;
+/* --- STILE GENERALE DEI PARAGRAFI --- */
+p {
+  position: absolute;                        /* Posizione assoluta nella pagina */
+  top: 20px;                                 /* 20px dal bordo superiore */
+  left: 20px;                                /* 20px dal bordo sinistro */
+  color: white;                              /* Colore del testo */
+  font-size: 24px;                           /* Dimensione del testo */
+  margin-top: 20px;                          /* Spazio sopra il paragrafo (anche se in questo caso absolute lo ignora) */
 }
 
+/* --- STILE DELLA PICCOLA IMMAGINE IN ALTO A SINISTRA --- */
 .angolo-sinistro {
-  position: absolute;
-  top: 100px;      /* spostata più in basso per lasciare spazio alla scritta */
-  left: 20px;
-  width: 180px;    /* leggermente più grande */
-  height: auto;
-  -webkit-user-drag: none; /* non trascinabile */
-  user-select: none;
+  position: absolute;                        /* Posizione assoluta */
+  top: 100px;                                /* Distanza dall’alto */
+  left: 20px;                                /* Distanza da sinistra */
+  width: 180px;                              /* Larghezza dell’immagine */
+  height: auto;                              /* Altezza proporzionata automaticamente */
+  user-select: none;                         /* Impedisce di selezionarla */
 }
