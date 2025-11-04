@@ -9,7 +9,7 @@
   <h1>Scontro 1vs1: Darwin vs T-Rex!</h1>
 
   <div class="arena">
-    <img src="../darwin.png" alt="Darwin (player)" id="darwinImg">
+    <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
     <img src="t-rex.jpg" alt="t-rex" id="anaisImg">
   </div>
 
@@ -49,7 +49,7 @@
       if (playerChoice === botChoice) {
         result = `Pareggio! Entrambi avete scelto ${playerChoice}.`;
         // immagini restano le stesse
-        darwinImg.src = "../darwin.png";
+        darwinImg.src = "../../Locazione1/darwin.png";
         anaisImg.src = "t-rex.jpg";
       } else if (
         (playerChoice === 'sasso' && botChoice === 'forbici') ||
@@ -59,13 +59,13 @@
         result = `Hai vinto il round! ${playerChoice} batte ${botChoice}.`;
         playerScore++;
         // immagini: Darwin vittoria, Anais sconfitta
-        darwinImg.src = "../darwinWin.jpeg";
+        darwinImg.src = "../../Locazione1/darwinWin.jpeg";
         anaisImg.src = "t-rexlose.jpg";
       } else {
         result = `Hai perso il round! ${botChoice} batte ${playerChoice}.`;
         botScore++;
         // immagini: Darwin sconfitta, Anais vittoria
-        darwinImg.src = "../darwinLose.jpg";
+        darwinImg.src = "../../Locazione1/darwinLose.jpg";
         anaisImg.src = "t-rexwin.jpg";
       }
 
@@ -74,16 +74,23 @@
       highlight.style.opacity = 1;
       scoreText.textContent = `Darwin: ${playerScore} | t-rex: ${botScore}`;
 
-      // Controlla vittoria di partita (prima a 3)
-      if (playerScore === maxScore || botScore === maxScore) {
+     // Controlla vittoria di partita (prima a 3)
+      if (playerScore >= maxScore || botScore >= maxScore) {
         gameOver = true;
         setTimeout(() => {
           if (playerScore > botScore) {
-            window.location.href = 'vittoria.html';
+            // Darwin ha vinto → chiedi conferma prima di andare alla pagina successiva
+            const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
+            if (conferma) {
+              window.location.href = '../../Locazione7/locazione7.html';
+            } else {
+              window.location.href = '../../PaginaSconfitta/sconfitta.html';
+            }
           } else {
-            window.location.href = 'sconfitta.html';
+            // Nocciolina ha vinto → vai direttamente alla pagina Game Over
+            window.location.href = '../../PaginaSconfitta/sconfitta.html';
           }
-        }, 2000);
+        }, 1000); // un secondo per dare tempo di vedere il risultato
       }
     }
   </script>
