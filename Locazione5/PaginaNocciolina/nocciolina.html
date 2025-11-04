@@ -1,99 +1,135 @@
 <!DOCTYPE html>
-<head>
-  <meta charset="UTF-8">
-  <title>Sasso Carta Forbici - 1vs1</title>
-  <link rel="stylesheet" href="nocciolina.css">
-</head>
-<body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sasso Carta Forbici - 1vs1</title>
+    <link rel="stylesheet" href="nocciolina.css">
+  </head>
+  <body>
 
-  <h1>Scontro 1vs1: Darwin vs Nocciolina!</h1>
+    <!-- Titolo principale -->
+    <h1>Scontro 1vs1: Darwin vs Nocciolina!</h1>
 
-  <div class="arena">
-    <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
-    <img src="nocciolina.jpg" alt="Anais (bot)" id="anaisImg">
-  </div>
+    <!-- Sezione dove appaiono le immagini dei due sfidanti -->
+    <div class="arena">
+      <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
+      <img src="nocciolina.jpg" alt="Nocciolina (bot)" id="nocciolinaImg">
+    </div>
 
-  <div id="result">
-    <span class="highlight" id="highlightText"></span>
-  </div>
+    <!-- Mostra il risultato del round -->
+    <div id="result">
+      <span class="highlight" id="highlightText"></span>
+    </div>
 
-  <div id="scoreboard">
-    <p id="score">Darwin: 0 | Nocciolina: 0</p>
-  </div>
+    <!-- Punteggio -->
+    <div id="scoreboard">
+      <p id="score">Darwin: 0 | Nocciolina: 0</p>
+    </div>
 
-  <div class="buttons">
-    <button onclick="play('sasso')">Sasso</button>
-    <button onclick="play('carta')">Carta</button>
-    <button onclick="play('forbici')">Forbici</button>
-  </div>
+    <!-- Pulsanti per giocare -->
+    <div class="buttons">
+      <button onclick="play('sasso')">Sasso</button>
+      <button onclick="play('carta')">Carta</button>
+      <button onclick="play('forbici')">Forbici</button>
+    </div>
 
-  <script>
-    let gameOver = false;
-    let playerScore = 0; // Darwin
-    let botScore = 0;    // Nocciolina
-    const maxScore = 3;  // meglio di 5 -> prima a 3 vince
+     <!-- Informazioni in basso -->
+    <div class="info-locazione">
+      <p>Ti trovi nella 5° locazione, la battaglia finale</p>
+      <img src="../Locazione5.png" alt="Seconda locazione" draggable="false">
+    </div>
 
-    function play(playerChoice) {
-      if (gameOver) return;
+    <!-- SCRIPT DEL GIOCO -->
+    <script>
+      // Variabile per sapere se la partita è finita
+      let gameOver = false;
 
-      const choices = ['sasso', 'carta', 'forbici'];
-      const botChoice = choices[Math.floor(Math.random() * choices.length)];
-      const highlight = document.getElementById("highlightText");
-      const scoreText = document.getElementById("score");
-      const darwinImg = document.getElementById("darwinImg");
-      const anaisImg = document.getElementById("anaisImg");
+      // Punteggi iniziali
+      let playerScore = 0; // Darwin
+      let botScore = 0;    // Nocciolina
 
-      let result = '';
+      // Punteggio massimo (chi arriva a 3 vince)
+      const maxScore = 3;
 
-      // Risultato del round
-      if (playerChoice === botChoice) {
-        result = `Pareggio! Entrambi avete scelto ${playerChoice}.`;
-        // immagini restano le stesse
-        darwinImg.src = "../../Locazione1/darwin.png";
-        anaisImg.src = "nocciolina.jpg";
-      } else if (
-        (playerChoice === 'sasso' && botChoice === 'forbici') ||
-        (playerChoice === 'carta' && botChoice === 'sasso') ||
-        (playerChoice === 'forbici' && botChoice === 'carta')
-      ) {
-        result = `Hai vinto il round! ${playerChoice} batte ${botChoice}.`;
-        playerScore++;
-        // immagini: Darwin vittoria, Anais sconfitta
-        darwinImg.src = "../../Locazione1/darwinWin.jpeg";
-        anaisImg.src = "nocciolinalose.jpg";
-      } else {
-        result = `Hai perso il round! ${botChoice} batte ${playerChoice}.`;
-        botScore++;
-        // immagini: Darwin sconfitta, Anais vittoria
-        darwinImg.src = "../../Locazione1/darwinLose.jpg";
-        anaisImg.src = "nocciolinawin.jpg";
-      }
+      // Funzione principale: viene eseguita ogni volta che premi un pulsante
+      function play(playerChoice) {
+        // Se la partita è già finita, non fare niente
+        if (gameOver) return;
 
-      // Aggiorna UI
-      highlight.textContent = result;
-      highlight.style.opacity = 1;
-      scoreText.textContent = `Darwin: ${playerScore} | Nocciolina: ${botScore}`;
+        // Possibili scelte
+        const choices = ['sasso', 'carta', 'forbici'];
 
-      // Controlla vittoria di partita (prima a 3)
-      if (playerScore >= maxScore || botScore >= maxScore) {
-        gameOver = true;
-        setTimeout(() => {
-          if (playerScore > botScore) {
-            // Darwin ha vinto → chiedi conferma prima di andare alla pagina successiva
-            const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
-            if (conferma) {
-              window.location.href = '../locazione5.html';
+        // Il bot sceglie casualmente una delle tre
+        const botChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        // Collegamento agli elementi HTML per modificare testo e immagini
+        const highlight = document.getElementById("highlightText");
+        const scoreText = document.getElementById("score");
+        const darwinImg = document.getElementById("darwinImg");
+        const anaisImg = document.getElementById("nocciolinaImg");
+
+        // Variabile che conterrà il messaggio del round
+        let result = '';
+
+        // --- LOGICA DEL GIOCO ---
+        if (playerChoice === botChoice) {
+          // Caso di pareggio
+          result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
+          // Le immagini restano normali
+          darwinImg.src = "../../Locazione1/darwin.png";
+          anaisImg.src = "nocciolina.jpg";
+        } 
+        else if (
+          (playerChoice === 'sasso' && botChoice === 'forbici') ||
+          (playerChoice === 'carta' && botChoice === 'sasso') ||
+          (playerChoice === 'forbici' && botChoice === 'carta')
+        ) {
+          // Giocatore vince il round
+          result = "Hai vinto il round! " + playerChoice + " batte " + botChoice + ".";
+          playerScore++;
+          // Aggiorna immagini
+          darwinImg.src = "../../Locazione1/darwinWin.jpeg";
+          anaisImg.src = "nocciolinalose.jpg";
+        } 
+        else {
+          // Giocatore perde il round
+          result = "Hai perso il round! " + botChoice + " batte " + playerChoice + ".";
+          botScore++;
+          // Aggiorna immagini: Darwin perde, Nocciolina vince
+          darwinImg.src = "../../Locazione1/darwinLose.jpg";
+          anaisImg.src = "nocciolinawin.jpg";
+        }
+
+        // Mostra il messaggio del round
+        highlight.textContent = result;
+        highlight.style.opacity = 1;
+
+        // Aggiorna il punteggio sullo schermo
+        scoreText.textContent = "Darwin: " + playerScore + " | Nocciolina: " + botScore;
+
+        // --- CONTROLLO VITTORIA FINALE ---
+        if (playerScore === maxScore || botScore === maxScore) {
+          gameOver = true;
+
+          // Aspetta 1 secondo prima di mostrare la finestra di vittoria o sconfitta
+          setTimeout(function() {
+            if (playerScore > botScore) {
+              // Giocatore ha vinto
+              const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
+              if (conferma) {
+                // Se conferma → va alla pagina successiva
+                window.location.href = '../locazione5.html';
+              } else {
+                // Se rifiuta → torna alla pagina di sconfitta
+                window.location.href = '../../PaginaSconfitta/sconfitta.html';
+              }
             } else {
+              // Se il bot vince → va direttamente alla sconfitta
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }
-          } else {
-            // Nocciolina ha vinto → vai direttamente alla pagina Game Over
-            window.location.href = '../../PaginaSconfitta/sconfitta.html';
-          }
-        }, 1000); // un secondo per dare tempo di vedere il risultato
+          }, 1000); // 1000 ms = 1 secondo
+        }
       }
-    }
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>
