@@ -47,8 +47,8 @@
     let playerScore = 0;
     let botScore = 0;
 
-    // Punteggio massimo (chi arriva a 3 vince)
-    const maxScore = 3;
+    // Punteggio massimo (chi arriva a 5 vince)
+    const maxScore = 5;
 
     // Funzione principale: viene eseguita ogni volta che premi un pulsante
     function play(playerChoice) {
@@ -116,14 +116,14 @@
             // Giocatore ha vinto
             const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
             if (conferma) {
-              // Se conferma → va alla pagina successiva
+              // Se conferma va alla pagina successiva
               window.location.href = '../locazione2.html';
             } else {
-              // Se rifiuta → torna alla pagina di sconfitta
+              // Se rifiuta va alla pagina di sconfitta
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }
           } else {
-            // Se il bot vince → va direttamente alla sconfitta
+            // Se il bot vince va direttamente alla sconfitta
             window.location.href = '../../PaginaSconfitta/sconfitta.html';
           }
         }, 1000); // 1000 ms = 1 secondo

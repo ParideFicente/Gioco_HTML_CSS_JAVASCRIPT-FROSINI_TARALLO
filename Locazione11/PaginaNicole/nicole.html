@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sasso Carta Forbici - 1vs1</title>
-  <link rel="stylesheet" href="nicoleStyle.css">
+  <link rel="stylesheet" href="nicole.css">
 </head>
 <body>
 
@@ -12,7 +12,7 @@
   <!-- Sezione con le immagini dei due sfidanti -->
   <div class="arena">
     <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
-    <img src="nicole.jpg" alt="Nicole (bot)" id="nicoleImg">
+    <img src="nicole.webp" alt="Nicole (bot)" id="nicoleImg">
   </div>
 
   <!-- Mostra il risultato del round -->
@@ -34,8 +34,8 @@
 
   <!-- Nuova sezione in basso a sinistra -->
   <div class="info-locazione">
-    <p>Ti trovi nella 7° locazione</p>
-    <img src="../Locazione7.png" alt="Settima locazione" draggable="false">
+    <p>Ti trovi nella 11° locazione</p>
+    <img src="../Locazione11.png" alt="Undicesima locazione" draggable="false">
   </div>
 
   <!-- SCRIPT DEL GIOCO -->
@@ -47,8 +47,8 @@
     let playerScore = 0;
     let botScore = 0;
 
-    // Punteggio massimo per vincere
-    const maxScore = 3;
+    // Punteggio massimo per vincere (il primo che arriva a 5 vince)
+    const maxScore = 5;
 
     // Funzione principale del gioco
     function play(playerChoice) {
@@ -75,7 +75,7 @@
         // Pareggio
         result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
         darwinImg.src = "../../Locazione1/darwin.png";
-        nicoleImg.src = "nicole.jpg";
+        nicoleImg.src = "nicole.webp";
       } 
       else if (
         (playerChoice === 'sasso' && botChoice === 'forbici') ||
@@ -112,7 +112,7 @@
           if (playerScore > botScore) {
             const conferma = confirm("Hai vinto contro Nicole! Vuoi passare alla prossima locazione?");
             if (conferma) {
-              window.location.href = '../locazione7.html';
+              window.location.href = '../locazione11.html';
             } else {
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }

@@ -1,0 +1,47 @@
+
+</html><!DOCTYPE html>
+<!-- Indica al browser che questo file è scritto in HTML5 -->
+
+<html>
+  <head>
+    <title>ADVENTURE</title>
+     <!-- Titolo della pagina: appare nella scheda del browser -->
+
+    <link rel="stylesheet" href="locazione5.css">
+     <!-- Collega il foglio di stile esterno (CSS) che contiene la grafica della pagina -->
+
+  </head>
+
+
+  <body>
+     <!-- Tutto ciò che è visibile nella pagina va dentro il tag <body> -->
+
+       <!-- Contenitore principale con titolo, immagine e pulsanti -->
+    <div class="Titolo">
+
+       <!-- Titolo principale della pagina -->
+      <h1>Hai davanti a te tre scelte. Scegli saggiamente!</h1>
+
+      <!-- Scritta che indica la posizione corrente del giocatore -->
+      <p>Ti trovi nella 5° locazione  dell'avventura</p>
+
+      <!-- Immagine mostrata sotto il titolo -->
+      <!-- L'attributo draggable="false" impedisce di trascinarla -->
+      <img src="Locazione5.png".png alt="Quinta locazione" class="angolo-sinistro" draggable="false">
+
+      <!-- Contenitore per i pulsanti -->
+      <div class="Porte">
+
+        <!-- Bottone che porta alla pagina della prima scelta -->
+        <!-- location.href serve per cambiare pagina tramite JavaScript -->
+        <button onclick="location.href='../Locazione6/PaginaT-rex/t-rex.html'">Prima Scelta</button>
+       
+        <!-- Bottone che porta alla pagina della seconda scelta -->
+        <button onclick="location.href='../Locazione10/PaginaSussie/sussie.html'">Seconda Scelta</button>
+       
+        <!-- Bottone che porta alla pagina della terza scelta -->
+        <button onclick="location.href='../Locazione9/PaginaPresideBrown/preside.html'">Terza Scelta</button>
+      </div>
+    </div>
+  </body>
+</html>

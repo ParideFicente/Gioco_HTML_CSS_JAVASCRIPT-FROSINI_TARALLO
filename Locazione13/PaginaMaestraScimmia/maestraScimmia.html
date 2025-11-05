@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sasso Carta Forbici - 1vs1</title>
+    <link rel="stylesheet" href="maestraScimmia.css">
+  </head>
+  <body>
+
+    <!-- Titolo principale -->
+    <h1>Scontro 1vs1: Darwin vs Maestra Scimmia!</h1>
+
+    <!-- Sezione dove appaiono le immagini dei due sfidanti -->
+    <div class="arena">
+      <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
+      <img src="scimmia.jpg" alt="Maestra Scimmia (bot)" id="maestraImg">
+    </div>
+
+    <!-- Mostra il risultato del round -->
+    <div id="result">
+      <span class="highlight" id="highlightText"></span>
+    </div>
+
+    <!-- Punteggio -->
+    <div id="scoreboard">
+      <p id="score">Darwin: 0 | Maestra Scimmia: 0</p>
+    </div>
+
+    <!-- Pulsanti per giocare -->
+    <div class="buttons">
+      <button onclick="play('sasso')">Sasso</button>
+      <button onclick="play('carta')">Carta</button>
+      <button onclick="play('forbici')">Forbici</button>
+    </div>
+
+    <!-- Nuova sezione in basso a sinistra -->
+    <div class="info-locazione">
+      <p>Ti trovi nella 13° locazione</p>
+      <img src="../Locazione13.png" alt="Tredicesima locazione" draggable="false">
+    </div>
+
+    <!-- SCRIPT DEL GIOCO -->
+    <script>
+      // Variabile per sapere se la partita è finita
+      let gameOver = false;
+
+      // Punteggi iniziali
+      let playerScore = 0; // Darwin
+      let botScore = 0;    // Maestra Scimmia
+
+      // Punteggio massimo (chi arriva a 5 vince)
+      const maxScore = 5;
+
+      // Funzione principale: viene eseguita ogni volta che premi un pulsante
+      function play(playerChoice) {
+        // Se la partita è già finita, non fare niente
+        if (gameOver) return;
+
+        // Possibili scelte
+        const choices = ['sasso', 'carta', 'forbici'];
+
+        // Il bot sceglie casualmente una delle tre
+        const botChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        // Collegamento agli elementi HTML per modificare testo e immagini
+        const highlight = document.getElementById("highlightText");
+        const scoreText = document.getElementById("score");
+        const darwinImg = document.getElementById("darwinImg");
+        const maestraScimmiaImg = document.getElementById("maestraImg");
+
+        // Variabile che conterrà il messaggio del round
+        let result = '';
+
+        // --- LOGICA DEL GIOCO ---
+        if (playerChoice === botChoice) {
+          // Caso di pareggio
+          result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
+          // Le immagini restano normali
+          darwinImg.src = "../../Locazione1/darwin.png";
+          maestraScimmiaImg.src = "scimmia.jpg";
+        } 
+        else if (
+          (playerChoice === 'sasso' && botChoice === 'forbici') ||
+          (playerChoice === 'carta' && botChoice === 'sasso') ||
+          (playerChoice === 'forbici' && botChoice === 'carta')
+        ) {
+          // Giocatore vince il round
+          result = "Hai vinto il round! " + playerChoice + " batte " + botChoice + ".";
+          playerScore++;
+          // Aggiorna immagini
+          darwinImg.src = "../../Locazione1/darwinWin.jpeg";
+          maestraScimmiaImg.src = "scimmiaLose.jpg";
+        } 
+        else {
+          // Giocatore perde il round
+          result = "Hai perso il round! " + botChoice + " batte " + playerChoice + ".";
+          botScore++;
+          // Aggiorna immagini: Darwin perde, Maestra Scimmia vince
+          darwinImg.src = "../../Locazione1/darwinLose.jpg";
+          maestraScimmiaImg.src = "scimmiaWin.jpg";
+        }
+
+        // Mostra il messaggio del round
+        highlight.textContent = result;
+        highlight.style.opacity = 1;
+
+        // Aggiorna il punteggio sullo schermo
+        scoreText.textContent = "Darwin: " + playerScore + " | Maestra Scimmia: " + botScore;
+
+        // --- CONTROLLO VITTORIA FINALE ---
+        if (playerScore === maxScore || botScore === maxScore) {
+          gameOver = true;
+
+          // Aspetta 1 secondo prima di mostrare la finestra di vittoria o sconfitta
+          setTimeout(function() {
+            if (playerScore > botScore) {
+              // Giocatore ha vinto
+              const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
+              if (conferma) {
+                // Se conferma va alla pagina successiva
+                window.location.href = '../../Locazione13/locazione13.html';
+              } else {
+                // Se rifiuta torna alla pagina di sconfitta
+                window.location.href = '../../PaginaSconfitta/sconfitta.html';
+              }
+            } else {
+              // Se il bot vince va direttamente alla sconfitta
+              window.location.href = '../../PaginaSconfitta/sconfitta.html';
+            }
+          }, 1000); // 1000 ms = 1 secondo
+        }
+      }
+    </script>
+  </body>
+</html>

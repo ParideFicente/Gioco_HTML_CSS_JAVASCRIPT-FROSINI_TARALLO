@@ -1,74 +1,100 @@
+/* --- STILE GENERALE DELLA PAGINA --- */
+body {
+  font-family: Arial, sans-serif;          /* Imposta il font principale del testo */
+  margin: 0;                              /* Elimina i margini esterni predefiniti del body */
+  padding: 0;                             /* Elimina i padding interni predefiniti */
+  background-image: url("../../Locazione1/sfondoIndex.jpg");  /* Immagine di sfondo */
+  background-size: cover;                 /* L’immagine copre tutto lo schermo */
+  background-position: center center;     /* L’immagine è centrata orizzontalmente e verticalmente */
+  background-repeat: no-repeat;           /* Impedisce la ripetizione dell’immagine */
+  background-attachment: fixed;           /* Lo sfondo resta fermo quando scorri la pagina */
+  text-align: center;                     /* Centra il testo orizzontalmente */
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-image: url("../sfondoIndex.jpg");
-      background-size: cover; 
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      text-align: center;
-    }
+/* --- SEZIONE DELL’ARENA (IMMAGINI DEI DUE SFIDANTI) --- */
+.arena {
+  display: flex;                          /* Usa flexbox per posizionare le immagini in fila */
+  justify-content: space-between;         /* Le immagini si dispongono ai lati opposti */
+  align-items: center;                    /* Centra verticalmente le immagini */
+  padding: 50px;                          /* Spazio interno intorno al contenuto */
+  height: 250px;                          /* Altezza complessiva dell’arena */
+}
 
-    .arena {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 50px;
-    }
+/* --- STILE DELLE IMMAGINI NELL’ARENA --- */
+.arena img {
+  width: 300px;                           /* Larghezza fissa di 300px */
+  max-width: 100%;                        /* Si riduce automaticamente su schermi piccoli */
+  border-radius: 10px;                    /* Arrotonda leggermente gli angoli */
+}
 
-    .arena img {
-      width: 300px;
-      max-width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
+/* Effetto quando passi il mouse sopra un’immagine */
+.arena img:hover {
+  transform: scale(1.05);                 /* Ingrandisce leggermente l’immagine (5%) */
+}
 
-    .arena img:hover {
-      transform: scale(1.05);
-    }
+/* --- SEZIONE DEI PULSANTI (Sasso, Carta, Forbici) --- */
+.buttons {
+  position: fixed;                        /* Posizione fissa, rimane visibile anche se si scrolla */
+  bottom: 30px;                           /* A 30px dal fondo della finestra */
+  left: 50%;                              /* Centra orizzontalmente rispetto alla finestra */
+  transform: translateX(-50%);            /* Corregge il posizionamento per essere davvero centrato */
+}
 
-    .buttons {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+/* Stile dei pulsanti */
+.buttons button {
+  font-size: 18px;                        /* Dimensione del testo */
+  padding: 10px 20px;                     /* Spazio interno (alto/basso 10px, sinistra/destra 20px) */
+  margin: 0 10px;                         /* Distanza tra i pulsanti */
+  cursor: pointer;                        /* Mostra la mano quando ci passi sopra */
+  border: none;                           /* Rimuove il bordo predefinito */
+  border-radius: 5px;                     /* Angoli leggermente arrotondati */
+  background-color: #007bff;              /* Colore blu di base */
+  color: white;                           /* Testo bianco */
+}
 
-    .buttons button {
-      font-size: 18px;
-      padding: 10px 20px;
-      margin: 0 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-      transition: background-color 0.3s;
-    }
+/* Colore dei pulsanti quando ci passi sopra */
+.buttons button:hover {
+  background-color: #0056b3;              /* Blu più scuro quando il mouse è sopra */
+}
 
-    .buttons button:hover {
-      background-color: #0056b3;
-    }
+/* --- TESTO DEL RISULTATO (pareggio, vittoria, sconfitta) --- */
+#result {
+  font-size: 24px;                        /* Dimensione del testo */
+  margin-top: 20px;                       /* Spazio sopra il risultato */
+}
 
-    #result {
-      font-size: 24px;
-      margin-top: 20px;
-    }
+/* --- STILE GENERALE PER H1, PUNTEGGIO E TESTO EVIDENZIATO --- */
+.highlight, #score, h1 {
+  display: inline-block;                  /* Si comportano come elementi in linea ma gestiscono padding e margini */
+  padding: 5px 10px;                      /* Spazio interno */
+  border: 2px solid black;                /* Bordo nero sottile */
+  border-radius: 5px;                     /* Angoli leggermente arrotondati */
+  background-color: white;                /* Sfondo bianco */
+  opacity: 1;                             /* Completamente visibile */
+  transition: opacity 0.3s;               /* Transizione fluida quando cambia l’opacità */
+  font-weight: bold;                      /* Testo in grassetto */
+}
 
-    .highlight, #score, h1 {
-      display: inline-block;
-      padding: 5px 10px;
-      border: 2px solid black;
-      border-radius: 5px;
-      background-color: white;
-      opacity: 1;
-      transition: opacity 0.3s;
-      font-weight: bold;
-    }
+/* --- PUNTEGGIO (Darwin: X | Gumball: Y) --- */
+#scoreboard {
+  margin-top: 15px;                       /* Distanza sopra il punteggio */
+  font-size: 22px;                        /* Dimensione del testo */
+}
 
-    #scoreboard {
-      margin-top: 15px;
-      font-size: 22px;
-    }
+/* --- SEZIONE IN BASSO A SINISTRA (INFO LOCAZIONE + IMMAGINE) --- */
+.info-locazione {
+  position: fixed;                        /* Posizione fissa (resta visibile anche se si scrolla) */
+  bottom: 20px;                           /* Distanza dal fondo */
+  left: 20px;                             /* Distanza dal bordo sinistro */
+  text-align: left;                       /* Allinea il testo a sinistra */
+  color: white;                           /* Colore del testo bianco */
+  font-size: 22px;                        /* Dimensione del testo */
+}
+
+/* --- IMMAGINE NELLA SEZIONE IN BASSO A SINISTRA --- */
+.info-locazione img {
+  display: block;                         /* L’immagine va su una nuova riga */
+  margin-top: 8px;                        /* Spazio tra il testo e l’immagine */
+  width: 180px;                           /* Larghezza fissa dell’immagine */
+  height: auto;                           /* Altezza proporzionata automaticamente */
+}

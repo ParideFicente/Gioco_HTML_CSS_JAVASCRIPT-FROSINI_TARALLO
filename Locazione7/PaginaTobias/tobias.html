@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sasso Carta Forbici - 1vs1</title>
-  <link rel="stylesheet" href="tobiasStyle.css">
+  <link rel="stylesheet" href="tobias.css">
 </head>
 <body>
 
@@ -34,8 +34,8 @@
 
   <!-- Nuova sezione in basso a sinistra -->
   <div class="info-locazione">
-    <p>Ti trovi nella 4° locazione</p>
-    <img src="../Locazione4.png" alt="Quarta locazione" draggable="false">
+    <p>Ti trovi nella 7° locazione</p>
+    <img src="../locazione7.png" alt="Settima locazione" draggable="false">
   </div>
 
   <!-- SCRIPT DEL GIOCO -->
@@ -47,8 +47,8 @@
     let playerScore = 0;
     let botScore = 0;
 
-    // Punteggio massimo (chi arriva a 3 vince)
-    const maxScore = 3;
+    // Punteggio massimo (chi arriva a 5 vince)
+    const maxScore = 5;
 
     // Funzione principale: viene eseguita ogni volta che premi un pulsante
     function play(playerChoice) {
@@ -116,14 +116,14 @@
             // Giocatore ha vinto
             const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
             if (conferma) {
-              // Se conferma → va alla pagina successiva
-              window.location.href = '../locazione4.html';
+              // Se conferma va alla pagina successiva
+              window.location.href = '../locazione7.html';
             } else {
-              // Se rifiuta → torna alla pagina di sconfitta
+              // Se rifiuta torna alla pagina di sconfitta
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }
           } else {
-            // Se il bot vince → va direttamente alla sconfitta
+            // Se il bot vince va direttamente alla sconfitta
             window.location.href = '../../PaginaSconfitta/sconfitta.html';
           }
         }, 1000); // 1000 ms = 1 secondo

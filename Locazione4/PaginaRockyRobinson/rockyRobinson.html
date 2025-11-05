@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sasso Carta Forbici - 1vs1</title>
-  <link rel="stylesheet" href="rockyRobinsonStyle.css">
+  <link rel="stylesheet" href="rockyRobinson.css">
 </head>
 <body>
 
@@ -12,7 +12,7 @@
   <!-- Sezione dove appaiono le immagini dei due sfidanti -->
   <div class="arena">
     <img src="../../Locazione1/darwin.png" alt="Darwin (player)" id="darwinImg">
-    <img src="rockyRobinson.jpg" alt="Rocky Robinson (bot)" id="rockyRobinsonImg">
+    <img src="rockyRobinson.webp" alt="Rocky Robinson (bot)" id="rockyRobinsonImg">
   </div>
 
   <!-- Mostra il risultato del round -->
@@ -34,8 +34,8 @@
 
   <!-- Nuova sezione in basso a sinistra -->
   <div class="info-locazione">
-    <p>Ti trovi nella 6° locazione</p>
-    <img src="../Locazione6.png" alt="Sesta locazione" draggable="false">
+    <p>Ti trovi nella 4° locazione</p>
+    <img src="../Locazione4.png" alt="Quarta locazione" draggable="false">
   </div>
 
   <!-- SCRIPT DEL GIOCO -->
@@ -47,8 +47,8 @@
     let playerScore = 0;
     let botScore = 0;
 
-    // Punteggio massimo (chi arriva a 3 vince)
-    const maxScore = 3;
+    // Punteggio massimo (chi arriva a 5 vince)
+    const maxScore = 5;
 
     // Funzione principale: viene eseguita ogni volta che premi un pulsante
     function play(playerChoice) {
@@ -76,7 +76,7 @@
         result = "Pareggio! Entrambi avete scelto " + playerChoice + ".";
         // Le immagini restano normali
         darwinImg.src = "../../Locazione1/darwin.png";
-        rockyRobinsonImg.src = "rockyRobinson.jpg";
+        rockyRobinsonImg.src = "rockyRobinson.webp";
       } 
       else if (
         (playerChoice === 'sasso' && botChoice === 'forbici') ||
@@ -88,7 +88,7 @@
         playerScore++;
         // Aggiorna immagini
         darwinImg.src = "../../Locazione1/darwinWin.jpeg";
-        rockyRobinsonImg.src = "rockyRobinsonLose.jpg";
+        rockyRobinsonImg.src = "rockyRobinsonLose.webp";
       } 
       else {
         // Giocatore perde il round
@@ -116,14 +116,14 @@
             // Giocatore ha vinto
             const conferma = confirm("Hai vinto, congratulazioni! Vuoi passare alla pagina successiva?");
             if (conferma) {
-              // Se conferma → va alla pagina successiva
-              window.location.href = '../locazione6.html';
+              // Se conferma va alla pagina successiva
+              window.location.href = '../locazione4.html';
             } else {
-              // Se rifiuta → torna alla pagina di sconfitta
+              // Se rifiuta torna alla pagina di sconfitta
               window.location.href = '../../PaginaSconfitta/sconfitta.html';
             }
           } else {
-            // Se il bot vince → va direttamente alla sconfitta
+            // Se il bot vince va direttamente alla sconfitta
             window.location.href = '../../PaginaSconfitta/sconfitta.html';
           }
         }, 1000); // 1000 ms = 1 secondo
